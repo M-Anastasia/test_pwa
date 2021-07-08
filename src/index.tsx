@@ -18,8 +18,8 @@ reportWebVitals();
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js', {
-            scope: '/'
+        navigator.serviceWorker.register('/test_pwa/sw.js', {
+            scope: '/test_pwa/'
         }).then((registration) => {
             console.log('Service worker registered successfully', registration);
         }).catch((error) => {
