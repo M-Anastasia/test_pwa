@@ -15,3 +15,21 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js', {
+            scope: '/'
+        }).then((registration) => {
+            console.log('Service worker registered successfully', registration);
+        }).catch((error) => {
+            console.log('Something went wrong', error);
+        });
+    });
+}
+window.addEventListener('offline', () => {
+    console.log('The network connection has been lost.')
+})
+window.addEventListener('online', () => {
+    console.log('You are now connected to the network.')
+})

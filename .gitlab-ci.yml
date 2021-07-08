@@ -1,0 +1,26 @@
+image: node:12
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  variables:
+    PUBLIC_URL: https://NasMas.gitlab.io/test_pwa/
+  script:
+    - yarn install --frozen-lockfile
+    - yarn build
+  artifacts:
+    paths:
+      - build/
+
+pages:
+  image: alpine:latest
+  stage: deploy
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - mv build public
+  artifacts:
+    paths:
+      - public
